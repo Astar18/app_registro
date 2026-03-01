@@ -9,7 +9,7 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         children: [
           const DrawerHeader(
-            decoration: BoxDecoration(color: Color.fromARGB(255, 58, 53, 181)),
+            decoration: BoxDecoration(color: Color.fromARGB(255, 65, 128, 200)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -21,7 +21,7 @@ class CustomDrawer extends StatelessWidget {
                 SizedBox(height: 10),
                 Text(
                   "Menú de Usuario",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
+                  style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 18),
                 ),
               ],
             ),

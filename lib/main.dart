@@ -1,4 +1,6 @@
 import 'package:app_registro/screens/home_screen.dart';
+import 'package:app_registro/screens/lista_usuarios_screen.dart';
+import 'package:app_registro/screens/login_screen.dart';
 import 'package:app_registro/screens/registro_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,14 +18,14 @@ class MyApp extends StatelessWidget {
       title: 'App de Registro',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 209, 149, 85)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 65, 128, 200)),
       ),
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeScreen(),
         '/registro': (context) => const RegistroScreen(),
-        '/lista': (context) => const RegistroScreen(),
-        '/login': (context) => const Scaffold(body: Center(child: Text("Pantalla de Login"))),
+        '/lista': (context) => const ListaUsuariosScreen(),
+        '/login': (context) => const LoginScreen(),
       },
     );
   }

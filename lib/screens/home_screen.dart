@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Bienvenido al sistema de Alex'),
-        backgroundColor: const Color.fromARGB(255, 58, 116, 183),
+        backgroundColor: const Color.fromARGB(255, 65, 128, 200),
         foregroundColor: Colors.white,
         centerTitle: true,
       ),
@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
               icon: const Icon(Icons.person_add),
               label: const Text('Comenzar Registro'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 67, 88, 211),
+                backgroundColor: const Color.fromARGB(255, 65, 128, 200),
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 shape: RoundedRectangleBorder(
