@@ -45,7 +45,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
               TextFormField(controller: _passController, decoration: const InputDecoration(labelText: "Contraseña"), obscureText: true),
               TextFormField(controller: _telController, decoration: const InputDecoration(labelText: "Teléfono"), keyboardType: TextInputType.phone),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: _guardar, child: const Text("Registrar Ahora"))
+              ElevatedButton(onPressed: _guardar, style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 65, 128, 200), foregroundColor: Colors.white), child: const Text("Registrar Ahora"))
             ],
           ),
         ),
