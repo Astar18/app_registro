@@ -28,12 +28,39 @@ class _ListaUsuariosScreenState extends State<ListaUsuariosScreen> {
     });
   }
 
+  // Widget helper para mostrar datos con icono
+  Widget _buildDataRow(IconData icon, String label, String value) {
+    return Row(
+      children: [
+        Icon(icon, size: 18, color: const Color.fromARGB(255, 65, 128, 200)),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: const TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                value,
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Personas Registradas'),
-        backgroundColor: const Color.fromARGB(255, 67, 88, 211),
+        backgroundColor: const Color.fromARGB(255, 65, 128, 200),
         foregroundColor: Colors.white,
       ),
       body: _isLoading
@@ -42,7 +69,7 @@ class _ListaUsuariosScreenState extends State<ListaUsuariosScreen> {
               ? const Center(
                   child: Text(
                     'No hay usuarios registrados aún.',
-                    style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 51, 147, 207)),
+                    style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 65, 128, 200)),
                   ),
                 )
               : ListView.builder(
@@ -62,52 +89,60 @@ class _ListaUsuariosScreenState extends State<ListaUsuariosScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        
-                        // Uso de CircleAvatar (Requisito)
-                        leading: CircleAvatar(
-                          radius: 20,
-                          backgroundColor: const Color.fromARGB(255, 79, 97, 203),
-                          foregroundColor: Colors.white,
-                          child: Text(
-                            inicial,
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                        ),
-                        
-                        title: Text(
-                          usuario['nombre'] ?? 'Sin nombre',
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                        
-                        subtitle: Column(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 5),
+                            // Encabezado con Avatar y nombre
                             Row(
                               children: [
-                                const Icon(Icons.email, size: 14, color: Color.fromARGB(255, 51, 147, 207)),
-                                const SizedBox(width: 5),
-                                Expanded(
+                                CircleAvatar(
+                                  radius: 30,
+                                  backgroundColor: const Color.fromARGB(255, 65, 128, 200),
+                                  foregroundColor: Colors.white,
                                   child: Text(
-                                    usuario['correo'] ?? 'Sin correo',
-                                    overflow: TextOverflow.ellipsis,
+                                    inicial,
+                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        usuario['nombre'] ?? 'Sin nombre',
+                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                                      ),
+                                      if (usuario['fecha_registro'] != null)
+                                        Text(
+                                          'Registrado: ${usuario['fecha_registro']}',
+                                          style: const TextStyle(fontSize: 12, color: Colors.grey),
+                                        ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
-                            // Mostrar teléfono solo si existe en la base de datos
-                            if (usuario['telefono'] != null && usuario['telefono'].toString().isNotEmpty) ...[
-                              const SizedBox(height: 3),
-                              Row(
-                                children: [
-                                  const Icon(Icons.phone, size: 14, color: Color.fromARGB(255, 51, 147, 207)),
-                                  const SizedBox(width: 5),
-                                  Text(usuario['telefono']),
-                                ],
-                              ),
-                            ]
+                            const Divider(height: 20),
+                            // Otros datos
+                            _buildDataRow(Icons.email, "Correo", usuario['correo'] ?? 'Sin correo'),
+                            const SizedBox(height: 10),
+                            if (usuario['telefono'] != null && usuario['telefono'].toString().isNotEmpty)
+                              _buildDataRow(Icons.phone, "Teléfono", usuario['telefono']),
+                            if (usuario['telefono'] != null && usuario['telefono'].toString().isNotEmpty)
+                              const SizedBox(height: 10),
+                            if (usuario['fecha_nacimiento'] != null && usuario['fecha_nacimiento'].toString().isNotEmpty)
+                              _buildDataRow(Icons.calendar_today, "Fecha Nacimiento", usuario['fecha_nacimiento']),
+                            if (usuario['fecha_nacimiento'] != null && usuario['fecha_nacimiento'].toString().isNotEmpty)
+                              const SizedBox(height: 10),
+                            if (usuario['genero'] != null && usuario['genero'].toString().isNotEmpty)
+                              _buildDataRow(Icons.wc, "Género", usuario['genero']),
+                            if (usuario['genero'] != null && usuario['genero'].toString().isNotEmpty)
+                              const SizedBox(height: 10),
+                            if (usuario['direccion'] != null && usuario['direccion'].toString().isNotEmpty)
+                              _buildDataRow(Icons.location_on, "Dirección", usuario['direccion']),
                           ],
                         ),
                       ),
