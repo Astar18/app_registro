@@ -58,6 +58,23 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 15),
+            ElevatedButton.icon(
+              onPressed: () {
+                // Navega a la pantalla de lista de usuarios
+                Navigator.pushNamed(context, '/lista');
+              },
+              icon: const Icon(Icons.people),
+              label: const Text('Ver Usuarios Registrados'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 65, 128, 200),
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+            ),
           ],
         ),
       ),
