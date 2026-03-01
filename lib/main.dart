@@ -1,3 +1,4 @@
+import 'package:app_registro/screens/registro_screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,10 +15,12 @@ class MyApp extends StatelessWidget {
       title: 'App Registro',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 209, 149, 85)),
       ),
       initialRoute: '/',
       routes: {
+        // '/': (context) => const Scaffold(body: Center(child: Text("Bienvenido a la App de Registro"))),
+        '/': (context) => const RegistroScreen(),
 
       },
     );
